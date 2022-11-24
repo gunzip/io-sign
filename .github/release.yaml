@@ -5,7 +5,7 @@ changelog:
     authors:
       - dependabot
   categories:
-    - title: Chore
+    - title: Chores
       labels:
         - chore
     - title: Breaking Changes
