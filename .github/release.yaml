@@ -5,7 +5,7 @@ changelog:
     authors:
       - dependabot
   categories:
-    - title: Chores
+    - title: Technical debt
       labels:
         - chore
     - title: Breaking Changes
