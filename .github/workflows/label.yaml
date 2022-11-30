@@ -36,8 +36,8 @@ jobs:
             if (title.match(/:!/)) labels.push('breaking-change');
 
             await github.rest.issues.addLabels({
-              owner: github.context.repo.owner,
-              repo: github.context.repo.repo,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               issue_number: context.payload.pull_request.number,
               labels: labels
             });
