@@ -25,4 +25,4 @@ ci:
 refactor:
   - "^refactor"
 breaking:
-  - ":!"
+  - ':\!'
