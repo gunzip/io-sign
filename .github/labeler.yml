@@ -1,27 +1,28 @@
 io-func-sign-issuer:
-  - "(issuer)"
-  - "(io-func-sign-issuer)"
+  - '\(issuer\)'
+  - '\(io-func-sign-issuer\)'
 io-func-sign-user:
-  - "(user)"
-  - "(io-func-sign-user)"
+  - '\(user\)'
+  - '\(io-func-sign-user\)'
 internal:
-  - "(internal)"
-  - "(io-sign)"
-  - "(io-services)"
-  - "(pdv-tokenizer)"
+  - '\(internal\)'
+  - '\(package\)'
+  - '\(io-sign\)'
+  - '\(io-services\)'
+  - '\(pdv-tokenizer\)'
 docs:
-  - "docs:"
+  - "^docs"
 fix:
-  - "^fix:"
+  - "^fix"
 chore:
-  - "^chore:"
+  - "^chore"
 feat:
-  - "^feat:"
+  - "^feat"
 build:
-  - "^build:"
+  - "^build"
 ci:
-  - "^ci:"
+  - "^ci"
 refactor:
-  - "^refactor:"
+  - "^refactor"
 breaking:
   - ":!"
