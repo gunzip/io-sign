@@ -14,7 +14,6 @@ jobs:
         id: set-result
         with:
           script: |
-            let labels = [];
             const title = context.payload.pull_request.title;
 
             const config = {
