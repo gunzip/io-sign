@@ -3,6 +3,7 @@
 #
 # To use this workflow, you will need to set up
 # a .github/labeler.yml configuration file
+#
 
 name: "Pull request labeler"
 on:
