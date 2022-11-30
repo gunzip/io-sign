@@ -12,8 +12,8 @@ internal:
   - '\(pdv-tokenizer\)'
 docs:
   - "^docs"
-fix:
-  - "^fix"
+# fix:
+#   - "^fix"
 chore:
   - "^chore"
 feat:
