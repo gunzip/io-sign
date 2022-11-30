@@ -1,8 +1,5 @@
-# This workflow will triage pull requests and apply a label based on the
-# convetional scope contained in the title of the pull request.
-#
-# To use this workflow, you will need to set up
-# a .github/labeler.yml configuration file
+# This workflow will triage pull requests and apply a label
+# based on the "conventional" title of the pull request.
 
 name: "Pull request labeler"
 on:
@@ -20,21 +17,22 @@ jobs:
             let labels = [];
             const title = context.payload.pull_request.title;
 
-            if (title.match(/\(.*user\)/)) labels.push('user');
-            if (title.match(/\(.*issuer\)/)) labels.push('issuer');
-            if (title.match(/\(io-sign\)/)) labels.push('internal');
-            if (title.match(/\(io-services\)/)) labels.push('internal');
-            if (title.match(/\(pdv-tokenizer\)/)) labels.push('internal');
-            if (title.match(/\(internal\)/)) labels.push('internal');
-            if (title.match(/^docs/)) labels.push('docs');
-            if (title.match(/^bug/)) labels.push('bug');
-            if (title.match(/^fix/)) labels.push('fix');
-            if (title.match(/^chore/)) labels.push('chore');
-            if (title.match(/^feat/)) labels.push('feat');
-            if (title.match(/^build/)) labels.push('build');
-            if (title.match(/^ci/)) labels.push('ci');
-            if (title.match(/^refactor/)) labels.push('refactor');
-            if (title.match(/!:/)) labels.push('breaking-change');
+            const config = {
+              docs: /^docs/,
+              bug: /^bug/,
+              fix: /^fix/,
+              chore: /^chore/,
+              feat: /^feat/,
+              build: /^build/,
+              ci: /^ci/,
+              refactor: /^refactor/,
+              "breaking-change": /!:/,
+            };
+
+            const labels = Object.entries(config).reduce(
+              (acc, cur) => (title.match(cur[1]) ? [...acc, cur[0]] : acc),
+              []
+            );
 
             if (labels.length > 0) {
               await github.rest.issues.addLabels({
