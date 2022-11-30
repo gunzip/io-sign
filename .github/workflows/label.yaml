@@ -6,16 +6,39 @@
 
 name: "Pull request labeler"
 on:
-  issues:
+  pull_request:
     types: [opened, edited]
 
 jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-      - uses: github/issue-labeler@v2.5
+      - uses: actions/github-script@v6
+        id: set-result
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          configuration-path: .github/labeler.yml
-          enable-versioned-regex: 0
-          include-title: 1
+          script: |
+            let labels = [];
+            const title = context.payload.pull_request.title;
+
+            if (title.match(/\(.*user\)/)) labels.push('user');
+            if (title.match(/\(.*issuer\)/)) labels.push('issuer');
+            if (title.match(/\(io-sign\)/)) labels.push('internal');
+            if (title.match(/\(io-services\)/)) labels.push('internal');
+            if (title.match(/\(pdv-tokenizer\)/)) labels.push('internal');
+            if (title.match(/\(internal\)/)) labels.push('internal');
+            if (title.match(/^docs/)) labels.push('docs');
+            if (title.match(/^fix/)) labels.push('fix');
+            if (title.match(/^chore/)) labels.push('chore');
+            if (title.match(/^feat/)) labels.push('feat');
+            if (title.match(/^build/)) labels.push('build');
+            if (title.match(/^ci/)) labels.push('ci');
+            if (title.match(/^refactor/)) labels.push('refactor');
+            if (title.match(/:!/)) labels.push('breaking-change');
+
+            await client.rest.issues.addLabels({
+              owner: github.context.repo.owner,
+              repo: github.context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              labels: labels
+            });
+          result-encoding: string
