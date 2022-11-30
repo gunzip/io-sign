@@ -35,7 +35,7 @@ jobs:
             if (title.match(/^refactor/)) labels.push('refactor');
             if (title.match(/:!/)) labels.push('breaking-change');
 
-            await client.rest.issues.addLabels({
+            await github.rest.issues.addLabels({
               owner: github.context.repo.owner,
               repo: github.context.repo.repo,
               issue_number: context.payload.pull_request.number,
