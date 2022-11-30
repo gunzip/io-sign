@@ -6,7 +6,7 @@
 
 name: "Pull request labeler"
 on:
-  issues:
+  pull_request:
     types: [opened, edited]
 
 jobs:
