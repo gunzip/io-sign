@@ -33,7 +33,7 @@ jobs:
             if (title.match(/^build/)) labels.push('build');
             if (title.match(/^ci/)) labels.push('ci');
             if (title.match(/^refactor/)) labels.push('refactor');
-            if (title.match(/:!/)) labels.push('breaking-change');
+            if (title.match(/!:/)) labels.push('breaking-change');
 
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
