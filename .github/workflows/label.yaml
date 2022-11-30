@@ -27,6 +27,7 @@ jobs:
             if (title.match(/\(pdv-tokenizer\)/)) labels.push('internal');
             if (title.match(/\(internal\)/)) labels.push('internal');
             if (title.match(/^docs/)) labels.push('docs');
+            if (title.match(/^bug/)) labels.push('bug');
             if (title.match(/^fix/)) labels.push('fix');
             if (title.match(/^chore/)) labels.push('chore');
             if (title.match(/^feat/)) labels.push('feat');
